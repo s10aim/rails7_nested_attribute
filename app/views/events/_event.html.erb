@@ -1,0 +1,17 @@
+<div class="card border-none my-2">
+  <div class="card-body rounded shadow-sm">
+    <div class="d-flex align-items-center">
+      <div>
+        【<%= l event.date %>】
+      </div>
+      <div class="ms-3">
+        <%= event.title %>
+      </div>
+      <div class="ms-auto">
+        <%= link_to event, class: "btn btn-primary" do %>
+          <i class="bi bi-calendar2-event"></i> <span>詳細</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
