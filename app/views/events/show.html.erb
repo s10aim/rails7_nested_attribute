@@ -33,6 +33,14 @@
     </table>
   </div>
 </div>
-<div class="text-start">
-  <%= link_to "イベント一覧へ", events_path, class: "btn btn-light" %>
+<div class="d-flex">
+  <div class="me-4">
+    <%= link_to "編集", edit_event_path(@event), class: "btn btn-success px-5" %>
+  </div>
+  <div>
+    <%= button_to "削除", @event, class: "btn btn-danger px-5", method: :delete, form: { data: { turbo_confirm: t("actions.confirm") } } %>
+  </div>
+  <div class="ms-auto">
+    <%= link_to "イベント一覧へ", events_path, class: "btn btn-light" %>
+  </div>
 </div>

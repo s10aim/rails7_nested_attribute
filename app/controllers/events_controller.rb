@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
   def index
-    @events = Event.order(created_at: :desc)
+    @events = Event.order(date: :desc)
   end
 
   def show
