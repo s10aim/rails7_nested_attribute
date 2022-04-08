@@ -1,0 +1,38 @@
+<div class="card mb-4">
+  <h5 class="card-header">
+    <%= l @event.date %>
+  </h5>
+  <div class="card-body">
+    <h1 class="card-title fs-2 mt-3 mb-5">
+      <%= @event.title %>
+    </h1>
+    <div class="card-text my-3">
+      <%= simple_format(h @event.body) %>
+    </div>
+    <hr>
+    <p class="mt-4">◆ タイムスケジュール</p>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">登壇者</th>
+          <th scope="col">タイトル</th>
+          <th scope="col">時間</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @speakers.each.with_index(1) do |speaker, i| %>
+          <tr>
+            <th scope="row"><%= i %></th>
+            <td><%= speaker.name %></td>
+            <td><%= speaker.title %></td>
+            <td><%= l speaker.start_time %>〜<%= l speaker.end_time %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="text-start">
+  <%= link_to "イベント一覧へ", events_path, class: "btn btn-light" %>
+</div>

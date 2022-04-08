@@ -4,7 +4,9 @@ class EventsController < ApplicationController
     @events = Event.order(created_at: :desc)
   end
 
-  def show; end
+  def show
+    @speakers = @event.speakers.order(start_time: :asc)
+  end
 
   def new
     @event = Event.new
