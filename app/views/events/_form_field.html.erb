@@ -1,13 +1,27 @@
-<div class="card mb-3">
-  <div class="card-header">
-    登壇者
-  </div>
-  <div id="card-body">
-    <div class="p-4">
-      <%= f.input :name %>
-      <%= f.input :title %>
-      <%= f.input :start_time, html5: true %>
-      <%= f.input :end_time, html5: true %>
+<%# 削除するタグを特定できる uuid を生成 %>
+<% uuid = SecureRandom.uuid %>
+<%= turbo_frame_tag uuid do %>
+  <div class="card mb-3">
+    <div class="card-header d-flex align-items-center">
+      <div>
+        登壇者
+      </div>
+      <div class="ms-auto">
+        <%# 新規フィールドは new アクション, 編集フィールドは edit アクションを起動させる %>
+        <%# 削除するタグを特定するための uuid を埋め込む。編集時は record_name を渡しておく %>
+        <% path = f.object.new_record? ? new_removal_speaker_path(uuid: uuid) : edit_removal_speaker_path(f.object, uuid: uuid, record_name: "#{f.object_name}[_destroy]") %>
+        <%= link_to path, class: "fs-5 text-danger" do %>
+          <i class="bi bi-dash-circle"></i>
+        <% end %>
+      </div>
+    </div>
+    <div id="card-body">
+      <div class="p-4">
+        <%= f.input :name %>
+        <%= f.input :title %>
+        <%= f.input :start_time, html5: true %>
+        <%= f.input :end_time, html5: true %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
