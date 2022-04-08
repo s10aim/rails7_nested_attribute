@@ -16,6 +16,9 @@ ja:
         end_time: 終了時刻
   actions:
     confirm: 本当によろしいですか？
+  errors:
+    messages:
+      gt: は開始時刻より遅い時刻を指定して下さい
   date:
     formats:
       default: '%Y年%-m月%-d日'

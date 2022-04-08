@@ -1,0 +1,10 @@
+<% index = params[:index].to_i %>
+<%= turbo_stream.append "speakers" do %>
+  <%= simple_fields_for params[:record_name], Speaker.new, index: index do |sf| %>
+    <%= render "events/form_field", f: sf %>
+  <% end %>
+<% end %>
+<%# 登壇者追加リンクの index を更新するため %>
+<%= turbo_stream.update "new_speaker" do %>
+  <%= render "events/new_speaker_link", record_name: params[:record_name], index: (index + 1) %>
+<% end %>

@@ -1,0 +1,18 @@
+<%# 注意: turbo_frame_tag 内の form 送信成功時にページ遷移をさせたい場合は, form タグに data-turbo-frame に _top を指定する必要あり %>
+<%= simple_form_for @event do |f| %>
+  <%= f.input :date, html5: true %>
+  <%= f.input :title %>
+  <%= f.input :body, input_html: { style: "height: 150px;" } %>
+  <%= turbo_frame_tag "speakers" do %>
+    <%= f.simple_fields_for :speakers do |sf| %>
+      <%= render "form_field", f: sf %>
+    <% end %>
+  <% end %>
+  <%= turbo_frame_tag "new_speaker" do %>
+    <%# fields_for に渡す record_name, index をクエリパラメータに埋め込んでおく %>
+    <%= render "new_speaker_link", record_name: "#{f.object_name}[speakers_attributes]", index: @event.speakers.length %>
+  <% end %>
+  <div class="d-grid gap-2 my-4">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
