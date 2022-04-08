@@ -9,6 +9,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
   <body>
+    <%= render "partials/flash" %>
     <div class="container-fluid my-4" style="max-width: 992px;">
       <%= yield %>
     </div>
