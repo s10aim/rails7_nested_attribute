@@ -16,26 +16,23 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if @event.save
-      flash[:notice] = '作成しました。'
-      redirect_to event_path(@event)
+      redirect_to event_path(@event), notice: '作成しました。'
     else
-      render :form
+      render :form, status: :unprocessable_entity
     end
   end
 
   def update
     if @event.update(event_params)
-      flash[:notice] = '更新しました。'
-      redirect_to event_path(@event)
+      redirect_to event_path(@event), notice: '更新しました。'
     else
-      render :form
+      render :form, status: :unprocessable_entity
     end
   end
 
   def destroy
     @event.destroy
-    flash[:alert] = '削除しました。'
-    redirect_to events_path
+    redirect_to events_path, alert: "削除しました。"
   end
 
   private

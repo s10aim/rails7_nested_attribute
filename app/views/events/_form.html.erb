@@ -1,5 +1,5 @@
-<%# 注意: turbo_frame_tag 内の form 送信成功時にページ遷移をさせたい場合は, form タグに data-turbo-frame に _top を指定する必要あり %>
 <div id=<%= dom_id(@event)%>>
+  <%# 参考: turbo_frame_tag 内の form 送信成功時にページ遷移をさせたい場合は, form タグに data-turbo-frame に _top を指定する必要あり %>
   <%= simple_form_for @event do |f| %>
     <%= f.input :date, html5: true %>
     <%= f.input :title %>

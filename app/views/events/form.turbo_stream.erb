@@ -1,4 +1,2 @@
 <%# フォームの送信エラー時に呼び出される %>
-<%= turbo_stream.replace dom_id(@event) do %>
-  <%= render "form" %>
-<% end %>
+<%= turbo_stream.replace dom_id(@event), partial: "form" %>

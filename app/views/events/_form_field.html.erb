@@ -1,4 +1,4 @@
-<%# 削除するタグを特定できる uuid を生成 %>
+<%# 削除対象のタグを特定するための uuid を生成 %>
 <% uuid = SecureRandom.uuid %>
 <%= turbo_frame_tag uuid do %>
   <div class="card mb-3">
@@ -9,7 +9,7 @@
       <div class="ms-auto">
         <%# 新規フィールドは new アクション, 編集フィールドは edit アクションを起動させる %>
         <%# 削除するタグを特定するための uuid を埋め込む。編集時は record_name を渡しておく %>
-        <% path = f.object.new_record? ? new_removal_speaker_path(uuid: uuid) : edit_removal_speaker_path(f.object, uuid: uuid, record_name: "#{f.object_name}[_destroy]") %>
+        <% path = f.object.new_record? ? new_removal_field_path(uuid: uuid) : edit_removal_field_path(f.object, uuid: uuid, object_name: f.object_name) %>
         <%= link_to path, class: "fs-5 text-danger" do %>
           <i class="bi bi-dash-circle"></i>
         <% end %>

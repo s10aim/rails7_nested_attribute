@@ -1,9 +1,19 @@
-<div class="card mb-4">
-  <h5 class="card-header">
-    <%= l @event.date %>
+<div class="card mt-5 mb-4">
+  <h5 class="card-header d-flex justify-content-between align-items-center">
+    <div>
+      <%= l @event.date %>
+    </div>
+    <div>
+      <%= link_to edit_event_path(@event), class: "fs-4 text-success text-decoration-none" do %>
+        <i class="bi bi-pencil-square"></i>
+      <% end %>
+      <%= button_to @event, class: "fs-4 text-danger border-0 bg-transparent", method: :delete, form: { data: { turbo_confirm: t("actions.confirm") } } do %>
+        <i class="bi bi-trash"></i>
+      <% end %>
+    </div>
   </h5>
   <div class="card-body">
-    <h1 class="card-title fs-2 mt-3 mb-5">
+    <h1 class="card-title fs-4 mt-3 mb-5">
       <%= @event.title %>
     </h1>
     <div class="card-text my-3">
@@ -15,32 +25,24 @@
       <thead>
         <tr>
           <th scope="col"></th>
-          <th scope="col">登壇者</th>
-          <th scope="col">タイトル</th>
+          <th scope="col"></th>
+          <th scope="col" class="w-50">タイトル</th>
           <th scope="col">時間</th>
         </tr>
       </thead>
       <tbody>
         <% @speakers.each.with_index(1) do |speaker, i| %>
           <tr>
-            <th scope="row"><%= i %></th>
-            <td><%= speaker.name %></td>
+            <th scope="row" class="text-nowrap"><%= i %></th>
+            <td class="text-nowrap"><%= speaker.name %></td>
             <td><%= speaker.title %></td>
-            <td><%= l speaker.start_time %>〜<%= l speaker.end_time %></td>
+            <td class="text-nowrap"><%= l speaker.start_time %>〜<%= l speaker.end_time %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
 </div>
-<div class="d-flex">
-  <div class="me-4">
-    <%= link_to "編集", edit_event_path(@event), class: "btn btn-success px-5" %>
-  </div>
-  <div>
-    <%= button_to "削除", @event, class: "btn btn-danger px-5", method: :delete, form: { data: { turbo_confirm: t("actions.confirm") } } %>
-  </div>
-  <div class="ms-auto">
-    <%= link_to "イベント一覧へ", events_path, class: "btn btn-light" %>
-  </div>
+<div>
+  <%= link_to "イベント一覧へ", events_path, class: "btn btn-light" %>
 </div>
